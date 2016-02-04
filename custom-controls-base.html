@@ -152,13 +152,14 @@
 
 		<!-- iosSlider plugin -->
 		<script src = "js/jquery.iosslider.min.js"></script>
-		<script src = "js/custom_controllers.js"></script>
+		<script src = "js/iosSlider.custom.btns.js"></script>
 
 		<script type="text/javascript">
 		$(document).ready(function() {
 
 			var prevButton = $('.prevButton');
 			var nextButton = $('.nextButton');
+			var triggerArea = '.iosSlider';
 			slideData1 = new slideData(jQuery);
 
 			$('.iosSlider').iosSlider({
@@ -176,10 +177,10 @@
 			function getSliderData_1(data1) {
 				// onload
 				if (data1.currentSlideNumber === 1 && data1.prevSlideNumber === undefined) {
-					slideData1.sliderOnLoad(data1, prevButton, nextButton);
+					slideData1.sliderOnLoad(data1, triggerArea, prevButton, nextButton);
 				}
 				else { // on slide change
-					slideData1.sliderOnChange(data1, prevButton, nextButton);
+					slideData1.sliderOnChange(data1, triggerArea, prevButton, nextButton);
 				}
 			}
 

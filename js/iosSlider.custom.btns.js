@@ -1,17 +1,17 @@
 var slideData = function() {
   // onLoad
-  this.sliderOnLoad = function(data, prevButton, nextButton) {
+  this.sliderOnLoad = function(data, triggerArea, prevButton, nextButton) {
     // onLoad set default opacity
     prevButton.css( "opacity", '0.0');
     nextButton.css( "opacity", '0.0');
     var numOfSlides = data.data.numberOfSlides;
     var curSlide = 1;
     var btnObj = getSliderState(data, curSlide, numOfSlides);
-    mouseEnterField(btnObj, prevButton, nextButton);
+    mouseEnterField(btnObj, triggerArea, prevButton, nextButton);
   };
 
   // get info from iosSlider
-  this.sliderOnChange = function(data, prevButton, nextButton) {
+  this.sliderOnChange = function(data, triggerArea, prevButton, nextButton) {
     var numOfSlides = data.data.numberOfSlides;
     var curSlide = (data.currentSlideNumber) ? data.currentSlideNumber : 1;
     var btnObj = getSliderState(data, curSlide, numOfSlides);
@@ -19,7 +19,7 @@ var slideData = function() {
     prevButton.css( "opacity", btnObj.prevO);
     nextButton.css( "opacity", btnObj.nextO);
     // give the opacity state to mouse in/out
-    mouseEnterField(btnObj, prevButton, nextButton);
+    mouseEnterField(btnObj, triggerArea, prevButton, nextButton);
   };
 
   /*
@@ -27,9 +27,9 @@ var slideData = function() {
   Need to know the opacity upon mouseleave
   so when mouseenter again the opacity will match the state of the slide
   */
-  function mouseEnterField(btnObj, prevButton, nextButton) {
+  function mouseEnterField(btnObj, triggerArea, prevButton, nextButton) {
 
-    $('.iosSlider').unbind().mouseenter(function() {
+    $(triggerArea).unbind().mouseenter(function() {
       prevButton.fadeTo( "slow", btnObj.prevO);
       nextButton.fadeTo( "slow", btnObj.nextO);
     }).mouseleave(function() {
